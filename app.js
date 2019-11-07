@@ -4,6 +4,7 @@ const path = require('path')
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var fs = require("fs");
+// var port_number = server.listen(process.env.PORT || 3000);
 
 
 
@@ -23,6 +24,6 @@ app.use('/', indexRouter)
 
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log('Listening on 3000');
 });
