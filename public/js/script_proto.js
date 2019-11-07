@@ -53,12 +53,11 @@ function openCvReady() {
                         // Detect face distance.
                         if (face.width > 200 || face.height > 200) {
                             console.log("Too close to screen!!");
-                            document.getElementById("p1").innerHTML = "Too close to the screen!";
+                            document.getElementById("distance-alert").innerHTML = "Too close to the screen!";
 
                         } else {
-                            document.getElementById("p1").innerHTML = " ";
+                            document.getElementById("distance-alert").innerHTML = " ";
                         }
-                        // document.getElementById("p1").innerHTML = "";
 
                         let point1 = new cv.Point(face.x, face.y);
                         let point2 = new cv.Point(face.x + face.width, face.y + face.height);
@@ -86,10 +85,10 @@ function openCvReady() {
                         // Detect eye blink
                         if (eyes.size()==0) {
                             console.log("BLINK!!!!");
-                            document.getElementById("p2").innerHTML = "Eye blinked";
+                            document.getElementById("eye-alert").innerHTML = "Eye blinked";
 
                         } else {
-                            document.getElementById("p2").innerHTML = " ";
+                            document.getElementById("eye-alert").innerHTML = " ";
                         }
                     }
                     cv.imshow("canvas_output", dst);

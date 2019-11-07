@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html data-wf-page="5c05726cf49f2ca2dd717748" data-wf-site="5c05726cf49f2c2fcd717749">
 <head>
-  <title>demo</title>
-  <link rel="stylesheet" href="/stylesheets/demo.css">
+  <title>Desk Life | Home</title>
+  <% include ./partials/head.ejs %>
 </head>
+
+  <% include ./partials/header.ejs %>
 
 
 <body class="home">
@@ -11,17 +13,17 @@
     <div class="form-wrapper">
 			<h2>Register</h2>
       <form action="/register" method="post" class="board-form">
-        <span class="label">user name</span><input type="text" name="user_name" class="input" required><br>
+        <span class="label">Name</span><input type="text" name="user_name" class="input" required><br>
         <br>
-        <span class="label">email</span><input type="email" name="email" class="input" required><br>
+        <span class="label">Email</span><input type="email" name="email" class="input" required><br>
         <br>
-        <span class="label">password</span><input type="password" name="password" class="input" required><br>
+        <span class="label">Password</span><input type="password" name="password" class="input" required><br>
         <br>
         <button type="submit" class="submit">Sign In</button>
       </form>
     </div>
     <div class="content-wrapper">
-      <h1>Try Demo without login/signup</h1>
+      <h1>Try the Demo without login/signup</h1>
       <a href="/face" class="demo-link"><span>DEMO</span></a>
     </div>
   </div>

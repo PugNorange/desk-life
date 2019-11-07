@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
-        <link rel="stylesheet" href="/stylesheets/demo_chart.css">
-    </head>
-    <body>
-        <div class="head-wrapper">
+<head>
+<title>Desk Life | Analysis</title>
+<meta charset="utf-8">
+<% include ./partials/head.ejs %>
+</head>
+
+<% include ./partials/header.ejs %>
+
+<body class="data">
+    <div class="data-wrapper">
+        <div class="head">
             <h1>Health condition while working at your desk</h1>
             <select>
-              <option value="Hour">Hour</option>
-              <option value="Day">Day</option>
+                <option value="Hour">Hour</option>
+                <option value="Day">Day</option>
             </select>
         </div>
-
         <div class="container">
             <canvas id="canvas"></canvas>
         </div>
-    </body>
-    <script src="./js/data_chart_demo.js" charset="utf-8"></script>
-</html>
+    </div>
+</body>
+<script src="js/data_chart_demo.js" charset="utf-8"></script>

@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="/stylesheets/face.css">
-
+  <title>Desk Life | Face</title>
+  <% include ./partials/head.ejs %>
 </head>
-<body>
+
+  <% include ./partials/header.ejs %>
+
+<body class="face">
     <div class="content-wrapper">
-        <video id="cam_input" height="280" width="373" style="display: none"></video>
-        <canvas id="canvas_output"></canvas>
-        <p id="p1"></p>
-        <p id="p2"></p>
-        <a class="btn" href="/data_chart_demo">Analysis</a>
+
+      <div class="video-wrapper">
+          <video id="cam_input" height="280" width="373" style="display: none"></video>
+          <canvas id="canvas_output"></canvas>
+      </div>
+
+      <div class="detect-wrapper">
+        <h3>Eyes Detector - <span id="eye-alert"></span></h3> 
+        <h3>Face Detector - <span id="distance-alert"></span></h3> 
+          <a class="btn" href="/data_chart_demo">Analysis</a>
+      </div>
+        
     </div>
 
 </body>
