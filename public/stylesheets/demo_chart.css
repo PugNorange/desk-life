@@ -3,9 +3,14 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: #F0F8FF;
+    font-family: Sans-serif;
+
 }
 .container{
     width: 85%;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .head-wrapper{
@@ -15,10 +20,16 @@ body{
     justify-content: space-between;
 }
 .head-wrapper h1{
+    color:black;
     margin: 0 40px;
 }
 .head-wrapper select{
     margin: 0 53px;
+    background-color: lightgray;
+    width: 7%;
+    color: black;
+    padding: 1%;
+    height: auto;
 }
 #canvas{
     display: flex;

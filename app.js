@@ -4,9 +4,6 @@ const path = require('path')
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var fs = require("fs");
-// var port_number = server.listen(process.env.PORT || 3000);
-
-
 
 
 // view engine setup
