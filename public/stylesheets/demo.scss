@@ -1,0 +1,495 @@
+/* VARS
+ * =================================
+ */
+ $primary: red;
+ $secondary: blue;
+
+  $lightest-grey: #f8f8f8;
+  $light-grey: #e8e8e8;
+  $med-grey: #b8b8b8;
+  $dark-grey: #333;
+ $cb: cubic-bezier(.49,.01,.22,1);
+
+/* MIXINS
+* =================================
+*/
+ @mixin transform($val) {
+   -webkit-transform: $val;
+   -moz-transform: $val;
+   -ms-transform: $val;
+   transform: $val;
+ }
+
+ @mixin transition($val...) {
+   -webkit-transition: $val;
+   -moz-transition: $val;
+   -o-transition: $val;
+   -ms-transition: $val;
+   transition: $val;
+ } 
+
+ @mixin transform-origin ($origin) {
+   moz-transform-origin: $origin;
+   -o-transform-origin: $origin;
+   -ms-transform-origin: $origin;
+   -webkit-transform-origin: $origin;
+   transform-origin: $origin;
+ }
+
+ @mixin display-flex {
+   display: -webkit-flex;
+   display: flex;
+ }
+
+ @mixin display-inline-flex {
+   display: -webkit-inline-box;
+   display: -webkit-inline-flex;
+   display: -moz-inline-flex;
+   display: -ms-inline-flexbox;
+   display: inline-flex;
+ }
+
+ @mixin justify-content($value) {
+   -webkit-justify-content: $value;
+   justify-content: $value;
+ }
+
+ @mixin flex-wrap($wrap) {
+   -webkit-flex-wrap: $wrap;
+   -moz-flex-wrap: $wrap;
+   -ms-flex-wrap: $wrap;
+   flex-wrap: $wrap;
+ }
+
+ @mixin align-content($align) {
+   -webkit-align-content: $align;
+   -moz-align-content: $align;
+   -ms-align-content: $align;
+   align-content: $align;
+ }
+
+ @mixin align-items($align) {
+   -webkit-align-items: $align;
+   -moz-align-items: $align;
+   -ms-align-items: $align;
+   align-items: $align;
+ }
+
+ @mixin align-self($align) {
+   -webkit-align-self: $align;
+   -moz-align-self: $align;
+   -ms-align-self: $align;
+   align-self: $align;
+ }
+
+ @mixin align-content($align) {
+   -webkit-align-content: $align;
+   -moz-align-content: $align;
+   -ms-align-content: $align;
+   align-content: $align;
+ }
+
+ @mixin user-select($val) {
+   -webkit-user-select: $val;
+   -moz-user-select: $val;
+   -ms-user-select: $val;
+   user-select: $val;
+ }
+
+ @mixin appearance($val) {
+   -webkit-appearance: $val;
+   -moz-appearance: $val;
+   -ms-appearance: $val;
+   -o-appearance: $val;
+   appearance: $val;
+ }
+
+ @mixin order($val) {
+   -webkit-box-ordinal-group: $val;
+   -moz-box-ordinal-group: $val;
+   -ms-flex-order: $val;
+   -webkit-order: $val;
+   order: $val;
+ }
+
+ @mixin flex-direction($direction) {
+   -webkit-flex-direction: $direction;
+   -moz-flex-direction: $direction;
+   -ms-flex-direction: $direction;
+   flex-direction: $direction;
+ }
+
+ @mixin flex($fg: 1, $fs: null, $fb: null) {
+
+   // Set a variable to be used by box-flex properties
+   $fg-boxflex: $fg;
+
+   // Box-Flex only supports a flex-grow value so let's grab the
+   // first item in the list and just return that.
+   @if type-of($fg) == 'list' {
+     $fg-boxflex: nth($fg, 1);
+   }
+
+   -webkit-box-flex: $fg-boxflex;
+   -webkit-flex: $fg $fs $fb;
+   -moz-box-flex: $fg-boxflex;
+   -moz-flex: $fg $fs $fb;
+   -ms-flex: $fg $fs $fb;
+   flex: $fg $fs $fb;
+ }
+
+ @mixin clip-path($clip...) {
+   -webkit-clip-path: $clip;
+   -moz-clip-path: $clip;
+   -ms-clip-path: $clip;
+   clip-path: $clip;
+ }
+
+ @mixin animation($animation, $duration, $timing-function: false, $delay: false, $direction: false, $iteration-count: false) {
+   -webkit-animation-delay: $delay;
+   -webkit-animation-duration: $duration;
+   -webkit-animation-name: $animation;
+   -webkit-animation-direction: $direction;
+   -webkit-animation-timing-function: $timing-function;
+   -webkit-animation-iteration-count: $iteration-count;
+
+   -moz-animation-delay: $delay;
+   -moz-animation-duration: $duration;
+   -moz-animation-name: $animation;
+   -moz-animation-direction: $direction;
+   -moz-animation-timing-function: $timing-function;
+   -moz-animation-iteration-count: $iteration-count;
+
+   animation-delay: $delay;
+   animation-duration: $duration;
+   animation-name: $animation;
+   animation-direction: $direction;
+   animation-timing-function: $timing-function;
+   animation-iteration-count: $iteration-count;
+ }
+
+ @mixin keyframes($animationName) {
+   @-webkit-keyframes #{$animationName} {
+     @content;
+   }
+   @-moz-keyframes #{$animationName} {
+     @content;
+   }
+   @keyframes #{$animationName} {
+     @content;
+   }
+ }
+
+ @mixin border-box {
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+ }
+
+ @mixin filter($value) {
+   -webkit-filter: $value;
+   -moz-filter: $value;
+   -o-filter: $value;
+   filter: $value;
+ }
+
+ @mixin linear-gradient($direction, $color-stops...) {
+   @if is-direction($direction) == false {
+     $color-stops: $direction, $color-stops;
+     $direction: 180deg;
+   }
+
+   background: nth(nth($color-stops, 1), 1);
+   background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+   background: linear-gradient($direction, $color-stops);
+   }
+ @function is-direction($value) {
+   $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+   $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+
+   @return $is-keyword or $is-angle;
+ }
+ @function legacy-direction($value) {
+   @if is-direction($value) == false {
+     @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+   }
+
+   $conversion-map: (
+     to top          : bottom,
+     to top right    : bottom left,
+     to right top    : left bottom,
+     to right        : left,
+     to bottom right : top left,
+     to right bottom : left top,
+     to bottom       : top,
+     to bottom left  : top right,
+     to left bottom  : right top,
+     to left         : right,
+     to left top     : right bottom,
+     to top left     : bottom right
+   );
+
+   @if map-has-key($conversion-map, $value) {
+     @return map-get($conversion-map, $value);
+   }
+
+   @return 90deg - $value;
+ }
+
+/* GENERAL
+* =================================
+*/
+ @charset "UTF-8";
+ html, body {
+   -webkit-font-smoothing: antialiased;
+   -moz-font-smoothing: antialiased;
+   -o-font-smoothing: antialiased;
+ }
+ * {
+   position: relative;
+   margin: 0;
+   padding: 0;
+   @include border-box;
+   font-family: 'Roboto', helvetica, arial, sans-serif;
+   font-weight: unset;
+ }
+ a {
+   text-decoration: none;
+   color: $dark-grey;
+   &:hover {
+     text-decoration: none;
+     cursor: pointer;
+   }
+ }  
+ .hide,
+ .hidden {
+   display: none !important;
+ }
+ span {
+   font: inherit;
+   color: inherit;
+ }
+ h1, h2, h3, h4, h5, h6 {
+   font-family: 'Lexend Deca';
+   display: block;
+   width: 100%;
+   line-height: 1.3;
+   margin-bottom: 10px;
+   color: gray;
+
+ }
+ h1 {
+   font-size: 42px;
+ }
+ p, li {
+   font-size: 15px;
+   line-height: 1.7;
+   color: $dark-grey;
+   margin-bottom: 15px;
+   a {
+     text-decoration: underline;
+   }
+
+   &.sm {
+     font-size: 13px;
+   }
+
+   &.xsm {
+     font-size: 11px;
+   }
+ }
+ ul {
+   list-style: none;
+   padding-left: 24px;
+   li {
+     &.subbullet {
+       padding-left: 22px;
+       margin-top: -10px;
+       &:before {
+         top: 12px;
+         left: 0;
+         width: 10px;
+         height: 2px;
+       }
+     }
+     &:before {
+       content: '';
+       position: absolute;
+       height: 6px;
+       width: 6px;
+       background: $primary;
+       left: -16px;
+       top: 8px;
+     }
+     &.ast {
+       left: -15px;
+       &:before {
+         display: none;
+       }
+     }
+   }
+ }
+ a.button,
+ button.button,
+ span.button {
+   color: white;
+   font-family: 'Lexend Deca';
+   text-transform: uppercase;
+   font-size: 13px;
+   background: $primary;
+   height: 46px;
+   padding: 0 30px;
+   margin-top: 10px;
+   @include display-inline-flex;
+   @include justify-content(center);
+   @include align-items(center);
+   box-shadow: 0 3px 13px -4px rgba(0,0,0,.3);
+   @include transition(all .2s ease-in-out);
+   cursor: pointer;
+   &:hover {
+     @include transform(translateY(-3px));
+     box-shadow: 0 6px 13px -4px rgba(0,0,0,.15);
+   }
+   &.clear {
+     background: transparent;
+     border: 1px solid white;
+   }
+   &.sm {
+     padding: 10px 15px;
+     font-size: 13px;
+   }
+   i {
+     margin: 0 5px;
+   }
+ }
+ .textbox {
+   max-width: 480px;
+   &.light * {
+     color: white;
+   }
+   * {
+     color: #333;
+   }
+   &.center {
+     text-align: center;
+   }
+ }
+ .col {
+   padding: 0 20px;
+   @include flex(unset);
+   max-width: none;
+   &.col-12 {
+     width: 100%;
+   }
+   &.col-11 {
+     width: 91.666666%;
+   }
+   &.col-10 {
+     width: 83.333333%;
+   }
+   &.col-9 {
+     width: 75%;
+   }
+   &.col-8 {
+     width: 66.666666%;
+   }
+   &.col-7 {
+     width: 58.333333%;
+   }
+   &.col-6 {
+     width: 50%;
+   }
+   &.col-5 {
+     width: 41.666666%;
+   }
+   &.col-4 {
+     width: 33.333333%;
+   }
+   &.col-3 {
+     width: 25%;
+   }
+   &.col-2 {
+     width: 16.666666%
+   }
+   &.col-1 {
+     width: 8.333333%
+   }
+ }
+
+
+
+
+body.home{
+  .home-container{
+    @include display-flex;
+    height: 100vh;
+    background: #00cc99;
+    .form-wrapper{
+      flex-direction: column;
+      justify-content: center;
+      width: 30%;
+      margin: 20px;
+      display: flex;
+      // align-items: center;
+      border-radius: 5px;
+      background: white;
+      h2{
+        text-align: center;
+      }
+      form{
+        flex-direction: column;
+        padding: 15px;
+        display: flex;
+        width: 100%;
+        .lable{
+
+        }
+        button{
+          background: gray;
+          color: white;
+          display: flex;
+          border-radius: 5px;
+          padding: 5px 30px;
+          align-self: center;
+        }
+      }
+    }
+    .content-wrapper{
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin: 20px;
+      border-radius: 5px;
+      background: white;
+      .demo-link{
+        width: 30%;
+        text-decoration: none;
+        padding: 10px;
+        background: gray;
+        color: white;
+        border-radius: 5px;
+        align-self: center;
+      }
+    }  
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

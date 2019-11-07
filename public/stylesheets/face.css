@@ -1,0 +1,25 @@
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.content-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+#canvas_output{
+    width: fit-content;
+}
+.btn{
+    text-align: center;
+    background: black;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    height: min-content;
+    align-self: flex-end;
+    }

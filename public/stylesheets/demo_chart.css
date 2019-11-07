@@ -1,0 +1,28 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.container{
+    width: 85%;
+}
+
+.head-wrapper{
+    margin: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.head-wrapper h1{
+    margin: 0 40px;
+}
+.head-wrapper select{
+    margin: 0 53px;
+}
+#canvas{
+    display: flex;
+    /* width: 90%; */
+    height: auto;
+    margin: auto;
+}
