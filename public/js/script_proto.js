@@ -51,7 +51,7 @@ function openCvReady() {
                         console.log("Face info ", i, " >> x:", face.x, " y:", face.y, " width:", face.width, " height:", face.height);
 
                         // Detect face distance.
-                        if (face.width > 200 || face.height > 200) {
+                        if (face.width > 180 || face.height > 180) {
                             console.log("Too close to screen!!");
                             document.getElementById("distance-alert").innerHTML = "Too close to the screen!";
 
