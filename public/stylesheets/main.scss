@@ -556,7 +556,28 @@ header{
 
 
 
+@media all and (max-width: 900px) {
+  .home .home-container{
+    flex-direction: column-reverse;
+    .form-wrapper{
+      border: none;
+      width: 55%;
+      h2{
+        text-align: center;
+        &:after{
+          width: 100%;
+        }
+      }
+      form{
+        align-items: center;
 
+      }
+    }
+    .content-wrapper{
+      width: 100%;
+    }
+  }
+}
 
 
 

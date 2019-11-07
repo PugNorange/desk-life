@@ -368,4 +368,19 @@ header {
         border-radius: 5px;
         align-self: center; }
 
+@media all and (max-width: 900px) {
+  .home .home-container {
+    flex-direction: column-reverse; }
+    .home .home-container .form-wrapper {
+      border: none;
+      width: 55%; }
+      .home .home-container .form-wrapper h2 {
+        text-align: center; }
+        .home .home-container .form-wrapper h2:after {
+          width: 100%; }
+      .home .home-container .form-wrapper form {
+        align-items: center; }
+    .home .home-container .content-wrapper {
+      width: 100%; } }
+
 /*# sourceMappingURL=main.css.map */
