@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #F0F8FF;
+  // background-color: #F0F8FF;
   font-family: Sans-serif;
   header #header-wrapper .navbar .header-link{
     color: black;
@@ -22,7 +22,8 @@
       // width: 100%;
       justify-content: space-between;
       h1{
-        color:black;
+        color: $primary;
+        // color:black;
         margin: 0 40px;
       }
       select{
@@ -30,19 +31,19 @@
         align-self: end;
         margin: 20px 0 0;    
         background-color: lightgray;
-        width: 7%;
+        // width: 7%;
         color: black;
-        padding: 1%;
+        padding: 5px;
         height: auto;
       }
     }
     .container{
-      // width: 85%;
       background-color: white;
       border-radius: 10px;
       #canvas{
         display: flex;
-        /* width: 90%; */
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, .5) 0px 0px 10px;
         height: auto;
         margin: auto;
       }
