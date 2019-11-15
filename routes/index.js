@@ -34,9 +34,8 @@ router.get('/data_chart_demo', function(req, res, next) {
     pgClient
         .query(query)
         .then((data, err) => {
-            console.log('Query successfully!', data.rows);
+            // console.log('Query successfully!', data.rows);
             var ch_data = JSON.stringify(data.rows);
-            console.log("ch_data ", ch_data);
             res.render('data_chart_demo', {chart_data: ch_data});
         })
         .catch((err) => {
