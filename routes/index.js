@@ -49,7 +49,6 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/login', function(req, res, next){
-    const pgClient = new pg.Client(config);
     var email = req.body.email;
     var password = req.body.password;
     // Connect to DB and check if it matches.
@@ -59,14 +58,14 @@ router.post('/login', function(req, res, next){
         var q = `select * from Users WHERE email='${email}' AND passwd='${password}'`;
         console.log("check >> ", q);
         pgClient.query(q, function (err, data) {
-            if (err){console.log("ERROR >> ", err);}
+            if (err){
+                console.log("ERROR >> ", err);
+                pgClient.end();
+            }
             else {
                 console.log("Success !! ", data);
                 res.render('index.ejs');
             }
-            pgClient.close(function () {
-                console.log('done');
-            });
         });
     // });
 
