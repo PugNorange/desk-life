@@ -4,7 +4,7 @@ const path = require('path')
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var fs = require('fs');
-var ibmdb = require('ibm_db');
+var pg = require('pg');
 
 
 
