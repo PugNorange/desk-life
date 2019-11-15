@@ -17,7 +17,7 @@ pgClient.connect(err => {
     else {
         console.log("Connect success demo");
         // Un-comment to insert demo data
-        //insertDemoData(1);
+        // insertDemoData(1);
     }
 });
 
