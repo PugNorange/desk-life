@@ -232,8 +232,15 @@ span.button {
     justify-content: space-around; }
     .face .content-wrapper .video-wrapper {
       width: 100%; }
-      .face .content-wrapper .video-wrapper #canvas_output {
-        width: fit-content; }
+      .face .content-wrapper .video-wrapper #load_camera{
+          /* GIF by Eddy Gann in 50 Micro-Interactions  */
+          /* https://dribbble.com/shots/3787986 */
+          width: 240px;
+          height: 200px;
+      }
+      .face .content-wrapper .video-wrapper #canvas_output{
+        width: fit-content;
+     }
     .face .content-wrapper .detect-wrapper {
       width: 100%;
       display: flex;

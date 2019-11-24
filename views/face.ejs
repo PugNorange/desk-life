@@ -12,15 +12,16 @@
 
       <div class="video-wrapper" >
           <video id="cam_input" height="280" width="373" style="display: none"></video>
-          <canvas id="canvas_output" ></canvas>
+          <img src="./../stylesheets/camera_loading.gif" id="load_camera">
+          <canvas id="canvas_output" class="hide"></canvas>
       </div>
 
       <div class="detect-wrapper">
-        <h3>Eyes Detector - <span id="eye-alert"></span></h3> 
-        <h3>Face Detector - <span id="distance-alert"></span></h3> 
+        <h3>Eyes Detector - <span id="eye-alert"></span></h3>
+        <h3>Face Detector - <span id="distance-alert"></span></h3>
           <a class="btn" href="/data_chart_demo">Analysis</a>
       </div>
-        
+
     </div>
 
 </body>

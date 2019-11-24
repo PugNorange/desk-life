@@ -46,6 +46,12 @@ function openCvReady() {
 
                 if (faces.size() == 1) {
 
+                    // When it detects the face, remove the loading camera gif.
+                    let loadingCameraGif = document.getElementById("load_camera");
+                    loadingCameraGif.classList.add("hide");
+                    let canvasOutput = document.getElementById("canvas_output");
+                    canvasOutput.classList.remove("hide");
+
                     for (let i = 0; i < faces.size(); ++i) {
                         let face = faces.get(i);
                         console.log("Face info ", i, " >> x:", face.x, " y:", face.y, " width:", face.width, " height:", face.height);

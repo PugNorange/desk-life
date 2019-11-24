@@ -17,7 +17,7 @@ pgClient.connect(err => {
     else {
         console.log("Connect success demo");
         // Un-comment to insert demo data
-        // insertDemoData(1);
+        insertDemoData(1);
     }
 });
 
@@ -46,7 +46,7 @@ function insertDemoData(user_id){
     var end_time = '2019-11-14 16:00:00.000000';   // 4:00 pm
 
     // Loop 7 times (8am -3pm)
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 24; i++) {
         // Create mock data for every hour
         eye_blink_count = getRandomArbitrary(2, 30);
         face_distance   = getRandomArbitrary(10, 18);
