@@ -27,6 +27,10 @@ router.get('/face', function(req, res, next) {
 });
 
 
+router.get('/instructions', function(req, res, next) {
+    res.render('instructions.ejs');
+});
+
 router.get('/data_chart_demo', function(req, res, next) {
     console.log("check point");
 

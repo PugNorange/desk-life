@@ -1,83 +1,55 @@
-// Create list of time labels for x-axis
-var xAxisTimeLabels = [];
-function getXAxisLabels(dataForChart) {
-    for (var i = 0; i < dataForChart.length; i++) {
-        var modifyTimeStamp = dataForChart[i]["start_time"].split("T");
-        var reformat = modifyTimeStamp[1].split(":");
-        var xAxisTimes = reformat[0]+":"+reformat[1];
-        xAxisTimeLabels[i] = xAxisTimes;
-    }
-};
 
-var faceDistanceData = [];
-function getFaceDistanceData(dataForChart) {
-    for (var i = 0; i < dataForChart.length; i++) {
-        faceDistanceData[i] = dataForChart[i]["face_distance"];
-    }
-};
+// var total_money= ['100','150','120','460','700','660','890','900','890','950','1300','1123']
+//
+// /// Eye blink data
+// var members = ['40','60','100','95','180','190','196','220','211','205','215','240']
 
-var eyeBlinkData = [];
-function getEyeBlinkData(dataForChart) {
-    for (var i = 0; i < dataForChart.length; i++) {
-        eyeBlinkData[i] = dataForChart[i]["eye_blink_count"];
-    }
-}
-
-
-window.onload = function() {
-    ctx = document.getElementById("canvas").getContext("2d");
-
-    // Get data for the chart
-    getXAxisLabels(dataForChart); // x-axis label
-    getFaceDistanceData(dataForChart); // face distance data
-    getEyeBlinkData(dataForChart); // Eye blink data
-    window.myBar = new Chart(ctx, {
-        type: 'bar', // ここは bar にする必要があります
-        data: barChartData,
-        options: complexChartOption
-    });
-};
-
-
-/// x-axis labels ///
-// ['0:00','1:00','2:00','3:00','4:00','5:00','5:00',
-//         '6:00','7:00','8:00','9:00','10:00','11:00','12:00',
-//         '13:00','14:00','15:00','16:00','17:00','18:00',
-//         '19:00','20:00','21:00','22:00','23:00','24:00'
-// ]
 
 /// Distance between face and PC (inches) //
-//['0','0','0','0','0','0','0','0','15','16',
-// '13','11','12','0','9','7','5','0','0','0',
-// '0','0','0','0',
-// ]
+var distance = ['0','0','0','0','0','0','0','0','15','16',
+'13','11','12','0','9','7','5','0','0','0',
+'0','0','0','0']
 
 /// Eye blink data
-// ['0','0','0','0','0','0','0',
-//     '0','0','11','15','9','5','0',
-//     '12','11','5','0','0','0','0','0','0'
-// ]
+var eye_blink = ['0','0','0','0','0','0',
+    '0','0','11','15','9','5','4',
+    '0','11','5','0','0','0','0','0','0'
+]
+
+var time_label = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00',
+'07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00',
+'16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
 
 var barChartData = {
-    labels: xAxisTimeLabels,
+    labels: time_label,
     datasets: [
         {
             type: 'line',
             label: 'Distance between face and PC (inches)',
-            data: faceDistanceData,
+            data: distance,
             borderColor : "rgba(254,97,132,0.8)",
             backgroundColor : "rgba(254,97,132,0.5)",
         },
         {
             type:'bar',
             label: 'Number of eye blinks per minute',
-            data: eyeBlinkData,
+            data: eye_blink,
             borderColor : "rgba(54,164,235,0.8)",
             backgroundColor : "rgba(54,164,235,0.5)",
         },
     ],
 };
 
+
+window.onload = function() {
+    ctx = document.getElementById("canvas").getContext("2d");
+
+    window.myBar = new Chart(ctx, {
+        type: 'bar', // ここは bar にする必要があります
+        data: barChartData,
+        options: complexChartOption
+    });
+};
 
 var complexChartOption = {
     responsive: true,
