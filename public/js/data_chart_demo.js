@@ -1,4 +1,3 @@
-console.log("DATA >>> ", dataForChart);
 // Create list of time labels for x-axis
 // Timezone issue needs to be solved later.
 var xAxisTimeLabel = ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00",

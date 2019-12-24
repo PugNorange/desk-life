@@ -36,13 +36,11 @@ pgClient.connect(err => {if (err) throw err;});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    const query = `SELECT * FROM HEALTHINFO WHERE user_id=1 ORDER BY start_time;`;
+    const query = `SELECT * FROM HEALTHINFO WHERE user_id=2 ORDER BY start_time;`;
     pgClient
         .query(query)
         .then((data, err) => {
-            console.log("Data >>> ", data.rows[0].start_time);
             console.log('Query successfully!', data.rows);
-
             var ch_data = JSON.stringify(data.rows);
             res.render('index.ejs', {chart_data: ch_data});
         })
