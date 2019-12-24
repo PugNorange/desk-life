@@ -12,7 +12,11 @@ function animateScrollTo(id) {
   }, 800, 'swing');
 }
 
-
+function onLoad() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+	});
+}
 // first time sign In //
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
