@@ -281,7 +281,9 @@
 						<h2 class="animate-box"><span>Sign up/Login</span></h2>
 						<div class="row">
 							<div class="col-md-8 col-md-offset-2 subtext">
-								<h3 class="animate-box">Signup and LogIn is coming soon...</h3>
+								<!-- <h3 class="animate-box">Signup and LogIn is coming soon...</h3> -->
+								<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 							</div>
 						</div>
 					</div>
@@ -296,8 +298,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 animate-box">
-					<h3 class="section-title">Opem|Health.</h3>
+					<h3 class="section-title">Open|Health.</h3>
 					<p>The most trustable health insurance company ever.</p>
+					<a href="#" onclick="signOut();">Sign out</a>
 
 				</div>
 
@@ -349,6 +352,7 @@
 		</div>
 	</div>
 
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<!-- jQuery -->
 	<script src="./../js/jquery.min.js"></script>
