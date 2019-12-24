@@ -5,8 +5,7 @@ var fs = require('fs');
 var postgres_config = require("./../postgres-config").database;
 var jstz = require('jstimezonedetect');
 var tz = jstz.determine(); //timezone Detector
-
-
+// Config for DB connection
 var config = new pg.Client({
   host: postgres_config.db,
   port: postgres_config.port,
@@ -15,23 +14,12 @@ var config = new pg.Client({
   database: postgres_config.dbname,
   ssl: true
 })
-
-
 const pgClient = new pg.Client(config);
 pgClient.connect(err => {if (err) throw err;});
-
-
-// var xAxisTimeLabel = [];
-// function getXAxisLabels(dataForChart) {
-//     for (var i = 0; i < dataForChart.length; i++) {
-//         console.log("SEE >> ", dataForChart[i]["start_time"]);
-//         var modifyTimeStamp = dataForChart[i]["start_time"].split("T");
-//         var reformat = modifyTimeStamp[1].split(":");
-//         var xAxisTimes = reformat[0]+":"+reformat[1];
-//         xAxisTimeLabel[i] = xAxisTimes;
-//         console.log("CHECK time >> ", xAxisTimes);
-//     }
-// };
+// Authentication and client for Google Signin
+const {OAuth2Client} = require('google-auth-library');
+const CLIENT_ID = "199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8"
+const client = new OAuth2Client(CLIENT_ID);
 
 
 /* GET home page. */
@@ -50,6 +38,23 @@ router.get('/', function(req, res, next) {
     });
     // res.render('index.ejs');
 });
+
+router.post('/', function(req, res, next){
+    console.log("CHECK IF GOOGLE LOGIN WORKIGN>>>>>");
+    async function verify() {
+      const ticket = await client.verifyIdToken({
+          idToken: token,
+          audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+          // Or, if multiple clients access the backend:
+          //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+      });
+      const payload = ticket.getPayload();
+      const userid = payload['sub'];
+      // If request specified a G Suite domain:
+      //const domain = payload['hd'];
+    }
+    verify().catch(console.error);
+})
 
 router.get('/face', function(req, res, next) {
   res.render('face.ejs');
