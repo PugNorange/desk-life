@@ -483,7 +483,7 @@ h1, h2, h3, h4, h5, h6 {
 #fh5co-work,
 #fh5co-counters,
 #fh5co-pricing,
-#fh5co-blog {
+#fh5co-download {
   padding: 8em 0;
 }
 @media screen and (max-width: 768px) {
@@ -494,7 +494,7 @@ h1, h2, h3, h4, h5, h6 {
   #fh5co-work,
   #fh5co-counters,
   #fh5co-pricing,
-  #fh5co-blog {
+  #fh5co-download {
     padding: 3em 0;
   }
 }
@@ -640,26 +640,26 @@ h1, h2, h3, h4, h5, h6 {
   color: #8f989f !important;
 }
 
-.fh5co-blog .blog {
+.fh5co-download .blog {
   margin-bottom: 40px;
 }
-.fh5co-blog .entry {
+.fh5co-download .entry {
   width: 100%;
   text-decoration: none;
 }
-.fh5co-blog .entry .desc-grid h3 {
+.fh5co-download .entry .desc-grid h3 {
   padding: 2px 0 0 0;
   margin: 0;
   font-size: 20px;
 }
-.fh5co-blog .entry .blog-bg {
+.fh5co-download .entry .blog-bg {
   height: 350px;
   background-size: cover;
   background-position: center center;
   position: relative;
   margin-bottom: 20px;
 }
-.fh5co-blog .entry .blog-bg .date {
+.fh5co-download .entry .blog-bg .date {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -669,19 +669,19 @@ h1, h2, h3, h4, h5, h6 {
   padding: 5px 10px;
   background: #3EC483;
 }
-.fh5co-blog .entry .blog-bg .date span, .fh5co-blog .entry .blog-bg .date small {
+.fh5co-download .entry .blog-bg .date span, .fh5co-download .entry .blog-bg .date small {
   display: block;
   color: #fff;
 }
-.fh5co-blog .entry .blog-bg .date span {
+.fh5co-download .entry .blog-bg .date span {
   font-size: 20px;
 }
-.fh5co-blog .entry .blog-bg .date small {
+.fh5co-download .entry .blog-bg .date small {
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-.fh5co-blog .entry .blog-bg .desc {
+.fh5co-download .entry .blog-bg .desc {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -695,13 +695,19 @@ h1, h2, h3, h4, h5, h6 {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-.fh5co-blog .entry .blog-bg .desc p {
+.fh5co-download .entry .blog-bg .desc p {
   color: #8f989f;
 }
-.fh5co-blog .entry:hover .desc {
+.fh5co-download .entry:hover .desc {
   opacity: 1;
 }
-
+.fh5co-download .operation-system-logo{
+    background-color: rgba(62, 196, 131, 0.3);
+    border-radius: 5px;
+    padding: 30px;
+    height: 100px;
+    width: 100px;
+}
 
 /* Pricing  */
 .pricing__item {
@@ -797,6 +803,8 @@ h1, h2, h3, h4, h5, h6 {
   background: #6EA76B;
 }
 
+
+/* Service / About css styling  */
 .fh5co-services {
   padding-bottom: 4em;
 }
@@ -838,6 +846,52 @@ h1, h2, h3, h4, h5, h6 {
   background: #00dee8;
   color: #fff;
 }
+
+
+/* Demo section css style */
+.fh5co-demo {
+  padding-bottom: 4em;
+}
+.fh5co-demo .box-services {
+  position: relative;
+  margin: 0 30px 70px 20px;
+}
+.fh5co-demo .box-services .icon {
+  margin-bottom: 20px;
+}
+.fh5co-demo .box-services .icon span {
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  position: relative;
+  background: #3EC483;
+  display: table;
+  margin: 0 auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+.fh5co-demo .box-services .icon span i {
+  display: table-cell;
+  vertical-align: middle;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 30px;
+  height: 130px;
+  color: #fff;
+}
+.fh5co-demo .fh5co-post h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.fh5co-demo .call-to-action .btn-learn {
+  padding: 12px 30px;
+  background: #00dee8;
+  color: #fff;
+}
+
+
 
 .fh5co-counters {
   padding: 3em 0;
