@@ -13,7 +13,11 @@
         "cookie-parser": "^1.4.4",
         "ejs": "^2.7.1",
         "express": "^4.17.1",
+<<<<<<< HEAD
         "google-auth-library": "^5.7.0",
+=======
+        "jstimezonedetect": "^1.0.7",
+>>>>>>> df3b013648c16bde80ddea5f453a5e6f3286c92e
         "nodemon": "^1.19.4",
         "path": "^0.12.7",
         "pg": "^7.12.1",
