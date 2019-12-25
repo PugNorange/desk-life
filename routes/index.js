@@ -59,31 +59,27 @@ router.post('/tokensignin', async (req, res, next) => {
             // If token is valid & email is verified, get the user information.
             const payload   = ticket.getPayload(); // Account information
             if (payload.email_verified === true) {
-                const userid    = payload['sub']; // constant usrid
+                console.log("check gID >> ", payload['sub']);
+                const ggluserid    = payload['sub']; // constant usrid
                 const email     = payload['email']; // email
                 const username  = payload['name']; // user name
                 //console.log("usrID: ", userid, " email: ", email, " user name: ", username);
-                const query = `SELECT * FROM USERS WHERE gmail_token_id='${userid}';`;
+                const query = `SELECT * FROM USERS WHERE gmail_token_id='${ggluserid}';`;
                 pgClient
                     .query(query)
                     .then((data, err) => {
                         // console.log('Query successfully!', data.rows);
-                        var usr_data = JSON.stringify(data.rows);
+                        var usr_data = data.rows;
                         if (usr_data.length > 0) {
                             console.log("USER DATA >> ", usr_data[0]);
                             // If username or email is update, change it in db also.
-                            if ((usr_data[0].user_name != username)||(usr_data[0].email != email)) {
-                                var updateUserInfoQuery = `UPDATE USERS SET email = '${email}', user_name='${username}' WHERE gmail_token_id = '${userid}';`;
+                            if ((String(usr_data[0].user_name) != String(username))||(String(usr_data[0].email) != String(email)) ) {
+                                console.log("Data not same");
+                                var updateUserInfoQuery = `UPDATE USERS SET email = '${email}', user_name='${username}' WHERE gmail_token_id = '${ggluserid}';`;
                                 pgClient
                                     .query(updateUserInfoQuery)
                                     .then((data, err) => {
                                         console.log("Data ?? ", data);
-                                        // console.log('Query successfully!', data.rows);
-                                        // res.render('index.ejs', {
-                                        //     chart_data: ch_data,
-                                        //     title: "home",
-                                        //     clientIdUrl: CLIENT_ID
-                                        // });
                                         console.log("update success!!");
                                         var userData = JSON.stringify({username: username, email: email});
                                         res.send(userData)
@@ -94,21 +90,28 @@ router.post('/tokensignin', async (req, res, next) => {
                                 });
 
                             }
-
-                            //res.send("check if its working");
-
-
+                            else {
+                                console.log("No user table update");
+                                var userData = JSON.stringify({username: username, email: email});
+                                res.send(userData)
+                            }
                         }
+                        // Create new user
                         else {
-                            console.log("No user table update");
-                            var userData = JSON.stringify({username: username, email: email});
-                            res.send(userData)
+                            var createNewUsrQuery = `INSERT INTO Users(user_name, passwd, email, gmail_token_id) VALUES('${username}', 'passwdPlacehold', '${email}', '${ggluserid}');`;
+                            pgClient
+                                .query(createNewUsrQuery)
+                                .then((data, err) => {
+                                    console.log("Data ?? ", data);
+                                    console.log("create new user success!!");
+                                    var userData = JSON.stringify({username: username, email: email});
+                                    res.send(userData)
+                                })
+                                .catch((err) => {
+                                    console.log(err)
+                                    pgClient.end();
+                            });
                         }
-                        // res.render('index.ejs', {
-                        //     chart_data: ch_data,
-                        //     title: "home",
-                        //     clientIdUrl: gglClientIdUrl
-                        // });
                     })
                     .catch((err) => {
                         console.log(err)
