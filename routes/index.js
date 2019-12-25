@@ -19,7 +19,8 @@ pgClient.connect(err => {if (err) throw err;});
 // clientID for Google Signin
 // const CLIENT_ID = "199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8"
 const {OAuth2Client} = require('google-auth-library');
-var CLIENT_ID = require("./../ggl_cli_id").clientIdUrl;
+var CLIENT_ID = '199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8.apps.googleusercontent.com';
+// var CLIENT_ID = require("./../ggl_cli_id").clientIdUrl;
 /* GET home page. */
 router.get('/', function(req, res, next) {
     const query = `SELECT * FROM HEALTHINFO WHERE user_id=2 ORDER BY start_time;`;
