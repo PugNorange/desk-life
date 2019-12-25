@@ -12,7 +12,6 @@
 	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
-	<meta name="google-signin-client_id" content="199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8.apps.googleusercontent.com">
 
   <!--
 	//////////////////////////////////////////////////////
@@ -55,6 +54,11 @@
 	<!-- Style -->
 	<link rel="stylesheet" href="./../stylesheets/css/style.css">
 
+	<!-- Google signin/login -->
+	<!-- Source: https://www.koheiando.com/tech/node-js/477 -->
+	<meta name="google-signin-client_id" content="<%= clientIdUrl %>">
+	<script src="./../js/googleLogin.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 	<!-- Modernizr JS -->
 	<script src="./../js/modernizr-2.6.2.min.js"></script>
@@ -341,8 +345,8 @@
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2 subtext">
 									<!-- <h3 class="animate-box">Signup and LogIn is coming soon...</h3> -->
-									<div class="g-signin2" data-onsuccess="onSignIn"></div>
-									<a href="#" onclick="signOut();">Sign out</a>
+									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"></div>
+									<!-- <a href="/" onclick="signOut();">Sign out</a> -->
 								</div>
 							</div>
 						</div>
@@ -411,8 +415,6 @@
 
 		<!-- jQuery -->
 		<script src="./../js/jquery.min.js"></script>
-		<!-- Oauth -->
-		<script src="./../js/sam.js"></script>
 		<!-- jQuery Easing -->
 		<script src="./../js/jquery.easing.1.3.js"></script>
 		<!-- Bootstrap -->
@@ -428,8 +430,6 @@
 		<!-- Chart library -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
 
-		<!-- Google signin/login -->
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 		<!-- Face detecte demo -->
 		<script src="./js/utils.js"></script>
