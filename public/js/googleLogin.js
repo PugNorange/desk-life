@@ -25,6 +25,7 @@ function onSignIn(googleUser) {
     xhr.onload = function() {
         const response = xhr.responseText
         console.log('Server returned: ' + response);
+        location.reload();
     };
     xhr.send('idtoken=' + id_token);
 

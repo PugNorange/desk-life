@@ -82,7 +82,12 @@ router.post('/tokensignin', async (req, res, next) => {
                                         console.log("Data ?? ", data);
                                         console.log("update success!!");
                                         var userData = JSON.stringify({username: username, email: email});
-                                        res.send(userData)
+
+                                        // res.send(userData)
+                                        res.render('index.ejs', {
+                                            userData: userData,
+                                            title: "login success",
+                                        });
                                     })
                                     .catch((err) => {
                                         console.log(err)
