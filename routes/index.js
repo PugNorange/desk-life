@@ -18,7 +18,7 @@ const pgClient = new pg.Client(config);
 pgClient.connect(err => {if (err) throw err;});
 // clientID for Google Signin
 const {OAuth2Client} = require('google-auth-library');
-var CLIENT_ID = '199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8.apps.googleusercontent.com';
+var CLIENT_ID = '664501923602-tnmkhgvhkr1nktvug2j2l50ieeiekc92.apps.googleusercontent.com';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
