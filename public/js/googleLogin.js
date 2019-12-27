@@ -2,6 +2,15 @@
 // Google Signin / Login function and design
 //
 // first time sign In //
+
+function init(){
+    gapi.load('auth2', function(){
+        // Ready.
+    });
+}
+
+
+
 function onSignIn(googleUser) {
     console.log("Clicked google signin btn");
     // The ID token you need to pass to your backend:

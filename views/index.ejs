@@ -60,8 +60,20 @@
 	<!-- <meta name="google-signin-client_id" content="206538427441-cuboulq664drmm339ogq437pnsj0ap1i.apps.googleusercontent.com"> -->
 
 	<script src="./../js/googleLogin.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
+	<script>
+	    function start() {
+	      gapi.load('auth2', function() {
+			  console.log("Check >>> <<<");
+	        auth2 = gapi.auth2.init({
+	          client_id: '664501923602-tnmkhgvhkr1nktvug2j2l50ieeiekc92.apps.googleusercontent.com',
+	          // Scopes to request in addition to 'profile' and 'email'
+	          //scope: 'https://www.google.com/m8/feeds/'
+	        });
+	      });
+	    }
+	  </script>
 	<!-- Modernizr JS -->
 	<script src="./../js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
