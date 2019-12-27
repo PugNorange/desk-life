@@ -7,20 +7,19 @@ var jstz = require('jstimezonedetect');
 var tz = jstz.determine(); //timezone Detector
 // Config for DB connection
 var config = new pg.Client({
-  host: postgres_config.db,
-  port: postgres_config.port,
-  user: postgres_config.usrId,
-  password: postgres_config.passwd,
-  database: postgres_config.dbname,
-  ssl: true
+    host: postgres_config.db,
+    port: postgres_config.port,
+    user: postgres_config.usrId,
+    password: postgres_config.passwd,
+    database: postgres_config.dbname,
+    ssl: true
 })
 const pgClient = new pg.Client(config);
 pgClient.connect(err => {if (err) throw err;});
 // clientID for Google Signin
-// const CLIENT_ID = "199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8"
 const {OAuth2Client} = require('google-auth-library');
 var CLIENT_ID = '199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8.apps.googleusercontent.com';
-// var CLIENT_ID = require("./../ggl_cli_id").clientIdUrl;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     const query = `SELECT * FROM HEALTHINFO WHERE user_id=2 ORDER BY start_time;`;
@@ -39,12 +38,9 @@ router.get('/', function(req, res, next) {
             console.log(err)
             pgClient.end();
     });
-    // res.render('index.ejs');
 });
 
-// const {OAuth2Client} = require('google-auth-library');
-
-
+/* POST get user information via Google login API. Create/update account. */
 router.post('/tokensignin', async (req, res, next) => {
     try {
         const client = new OAuth2Client(CLIENT_ID);
@@ -60,10 +56,11 @@ router.post('/tokensignin', async (req, res, next) => {
             // If token is valid & email is verified, get the user information.
             const payload   = ticket.getPayload(); // Account information
             if (payload.email_verified === true) {
-                console.log("check gID >> ", payload['sub']);
+                console.log("check user info >> ", payload);
                 const ggluserid    = payload['sub']; // constant usrid
                 const email     = payload['email']; // email
                 const username  = payload['name']; // user name
+                const picture   = payload['picture'];
                 //console.log("usrID: ", userid, " email: ", email, " user name: ", username);
                 const query = `SELECT * FROM USERS WHERE gmail_token_id='${ggluserid}';`;
                 pgClient
@@ -74,16 +71,16 @@ router.post('/tokensignin', async (req, res, next) => {
                         if (usr_data.length > 0) {
                             console.log("USER DATA >> ", usr_data[0]);
                             // If username or email is update, change it in db also.
-                            if ((String(usr_data[0].user_name) != String(username))||(String(usr_data[0].email) != String(email)) ) {
+                            if ((String(usr_data[0].user_name) != String(username))||(String(usr_data[0].email) != String(email))||(String(usr_data[0].user_icon) != String(picture))) {
                                 console.log("Data not same");
-                                var updateUserInfoQuery = `UPDATE USERS SET email = '${email}', user_name='${username}' WHERE gmail_token_id = '${ggluserid}';`;
+                                var updateUserInfoQuery = `UPDATE USERS SET email = '${email}', user_name='${username}', user_icon='${picture}' WHERE gmail_token_id = '${ggluserid}';`;
                                 pgClient
                                     .query(updateUserInfoQuery)
                                     .then((data, err) => {
                                         console.log("Data ?? ", data);
                                         console.log("update success!!");
+                                        // var userData = JSON.stringify({username: username, email: email});
                                         var userData = JSON.stringify({username: username, email: email});
-
                                         // res.send(userData)
                                         res.render('index.ejs', {
                                             userData: userData,
@@ -128,20 +125,9 @@ router.post('/tokensignin', async (req, res, next) => {
         }
         verify().catch(console.error); // If token is invalid.
 
-    // write query here
-
-    // const query = `SELECT * FROM USERS WHERE gmail_token_id='faf824e5-5b81-4224-84b6-98687c0af9fe';`;
-    // const query_two = `INSERT INTO Users(user_name, passwd, email, gmail_token_id)
-// VALUES('demouser1', 'testtest1', 'test1@gmail.com', 'cd43de77-b669-4567-9428-b48e93956b78');`;
-
-
-
-    // res.send("Hey success!!")
-
-
-  } catch (e) {
-    next(e);
-  }
+    } catch (e) {
+        next(e);
+    }
 });
 
 

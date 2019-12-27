@@ -9,23 +9,19 @@ function onSignIn(googleUser) {
     // console.log("ID Token   : " + id_token);
 
     var profile = googleUser.getBasicProfile();
-
     // auth2 is initialized with gapi.auth2.init() and a user is signed in.
-    // console.log('ID         : ' + profile.getId());
-    // console.log('Full Name  : ' + profile.getName());
-    // console.log('Given Name : ' + profile.getGivenName());
-    // console.log('Family Name: ' + profile.getFamilyName());
-    // console.log('Image URL  : ' + profile.getImageUrl());
-    // console.log('Email      : ' + profile.getEmail());
+    // console.log('ID         : ' + profile.());
+
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/tokensignin');
     // xhr.open('POST', 'http://localhost:3000/');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
-        const response = xhr.responseText
+        const response = xhr.responseText;
         console.log('Server returned: ' + response);
-        // location.reload();
+
+
     };
     xhr.send('idtoken=' + id_token);
 
@@ -40,6 +36,15 @@ function signOut() {
 }
 function onSuccess(googleUser) {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    // Replace Signin/Login with username
+    var accountNav = document.getElementById("user_account");
+    accountNav.innerHTML = "Hi, " + googleUser.getBasicProfile().getName();
+    accountNav.style.textDecoration = "underline";
+    // accountNav.removeAttribute("data-nav-section");
+    // accountNav.setAttribute('href', '/instructions');
+    // accountNav.setAttribute('onclick', 'signOut();');
+    // accountNav.classList.remove("data-nav-section");
+    // accountNav.href = "/instructions";
 }
 function onFailure(error) {
   console.log(error);
