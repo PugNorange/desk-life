@@ -60,3 +60,36 @@ function renderButton() {
         'onfailure': onFailure
     });
 }
+
+
+
+
+
+//////////////////////////////////////////////////////
+
+// // called by google client
+// function onSignIn(googleUser) {
+//   var id_token = googleUser.getAuthResponse().id_token;
+//   // never log these out on a real app
+//   console.log('id_token: ', id_token);
+//   var profile = googleUser.getBasicProfile();
+//   console.log('ID: ' + profile.getId());
+//   console.log('Name: ' + profile.getName());
+//   console.log('Image URL: ' + profile.getImageUrl());
+//   console.log('Email: ' + profile.getEmail());
+//   // verification
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', '/tokensignin');
+//   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//   xhr.onload = function() {
+//     console.log('Server returned: ' + xhr.responseText);
+//   };
+//   xhr.send('idtoken=' + id_token);
+// }
+// // on sign out
+// function signOut() {
+//   var auth2 = gapi.auth2.getAuthInstance();
+//   auth2.signOut().then(function() {
+//     console.log('User signed out.');
+//   });
+// }
