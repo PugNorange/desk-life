@@ -45,7 +45,7 @@ router.post('/tokensignin', async (req, res, next) => {
     try {
         const client = new OAuth2Client(CLIENT_ID);
         const idToken = String(req.body.idtoken);
-        // console.log("TOKEN >>> ", idToken);
+        console.log("TOKEN >>> ", idToken);
         async function verify() {
             const ticket = await client.verifyIdToken({
                 idToken: idToken,
