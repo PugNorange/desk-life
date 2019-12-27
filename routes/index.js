@@ -18,7 +18,7 @@ const pgClient = new pg.Client(config);
 pgClient.connect(err => {if (err) throw err;});
 // clientID for Google Signin
 const {OAuth2Client} = require('google-auth-library');
-var CLIENT_ID = '199579559715-n165q0hs5n5fc5r1vhk72t29n4sag7i8.apps.googleusercontent.com';
+var CLIENT_ID = '199579559715-ldubrul1ios9p65s9ukir6kkv5ssqhjp.apps.googleusercontent.com';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -45,7 +45,7 @@ router.post('/tokensignin', async (req, res, next) => {
     try {
         const client = new OAuth2Client(CLIENT_ID);
         const idToken = String(req.body.idtoken);
-        // console.log("TOKEN >>> ", idToken);
+        console.log("TOKEN >>> ", idToken);
         async function verify() {
             const ticket = await client.verifyIdToken({
                 idToken: idToken,
