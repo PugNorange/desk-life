@@ -4,96 +4,16 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
 	<title>Healthware. &mdash; Daily health supporter</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
+	<% include ./partials/head.ejs %>
 
-  <!--
-	//////////////////////////////////////////////////////
+</head>
 
-	FREE HTML5 TEMPLATE
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-    URL: https://www.free-css.com/free-css-templates/page241/solid
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
-
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="./../stylesheets/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="./../stylesheets/css/icomoon.css">
-	<!-- Simple Line Icons -->
-	<link rel="stylesheet" href="./../stylesheets/css/simple-line-icons.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="./../stylesheets/css/bootstrap.css">
-	<!-- Style -->
-	<link rel="stylesheet" href="./../stylesheets/css/style.css">
-
-	<!-- Google signin/login -->
-	<!-- Source: https://www.koheiando.com/tech/node-js/477 -->
-	<meta name="google-signin-scope" content="profile email openid">
-	<!-- <meta name="google-signin-client_id" content="<%= clientIdUrl %>"> -->
-	<meta name="google-signin-client_id" content="1059834391781-bjme5ivmlmv68ip8flmq14c90h9cpp8c.apps.googleusercontent.com">
-
-
-	<!-- Modernizr JS -->
-	<script src="./../js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
-	</head>
 	<body>
 		<!-- Header section -->
-		<header role="banner" id="fh5co-header">
-			<div class="container">
-				<div class="row">
-					<nav class="navbar navbar-default navbar-fixed-top">
-						<div class="navbar-header">
-							<!-- Mobile Toggle Menu Button -->
-							<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-							<a class="navbar-brand" href="/">Healthware.</a>
-						</div>
-						<div id="navbar" class="navbar-collapse collapse">
-							<ul class="nav navbar-nav navbar-right">
-								<li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
-								<li><a href="#" data-nav-section="services"><span>About</span></a></li>
-								<li><a href="#" data-nav-section="demo"><span>Demo</span></a></li>
-								<li><a href="#" data-nav-section="download-pkg"><span>Download</span></a></li>
-								<!-- <li><a href="#" data-nav-section="pricing"><span>Pricing</span></a></li> -->
-								<li><a href="#" data-nav-section="account" id="user_account"><span>Sign Up/Login</span></a></li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-		  </div>
-		</header>
+		<% include ./partials/header.ejs %>
+
 		<!-- Home head section -->
 		<section id="fh5co-home" data-section="home" style="background-image: url(./../stylesheets/img/plant_img1.jpg);" data-stellar-background-ratio="0.5">
 	        <!-- Photo by Scott Webb on Unsplash  URL: https://unsplash.com/photos/hDyO6rr3kqk -->
@@ -362,9 +282,8 @@
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2 subtext">
 									<!-- <h3 class="animate-box">Signup and LogIn is coming soon...</h3> -->
-									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"  data-theme="dark"></div>
-									<a href="/" onclick="signOut();">SignOut</a>
-									<!-- <a href="/" onclick="signOut();">Sign out</a> -->
+									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"></div>
+									<a href="/account" id="account_btn">Go to your account page</a>
 								</div>
 							</div>
 						</div>

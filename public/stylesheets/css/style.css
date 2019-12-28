@@ -22,6 +22,10 @@ body {
   background: #F4F7F7;
 }
 
+#account_btn{
+  display: none;
+}
+
 #page {
   position: relative;
   overflow-x: hidden;

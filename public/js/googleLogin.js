@@ -39,6 +39,7 @@ function signOut() {
     });
 }
 function onSuccess(googleUser) {
+    console.log("CHECK >>>>")
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     // Replace Signin/Login with username
     var accountNav = document.getElementById("user_account");
@@ -49,6 +50,9 @@ function onSuccess(googleUser) {
     // accountNav.setAttribute('onclick', 'signOut();');
     // accountNav.classList.remove("data-nav-section");
     // accountNav.href = "/instructions";
+    document.getElementById('my-signin2').style.display = 'none';
+    document.getElementById('account_btn').style.display = 'flex';
+
 }
 function onFailure(error) {
   console.log(error);
