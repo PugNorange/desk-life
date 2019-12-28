@@ -56,24 +56,11 @@
 
 	<!-- Google signin/login -->
 	<!-- Source: https://www.koheiando.com/tech/node-js/477 -->
-	<meta name="google-signin-client_id" content="<%= clientIdUrl %>">
-	<!-- <meta name="google-signin-client_id" content="206538427441-cuboulq664drmm339ogq437pnsj0ap1i.apps.googleusercontent.com"> -->
+	<meta name="google-signin-scope" content="profile email openid">
+	<!-- <meta name="google-signin-client_id" content="<%= clientIdUrl %>"> -->
+	<meta name="google-signin-client_id" content="1059834391781-bjme5ivmlmv68ip8flmq14c90h9cpp8c.apps.googleusercontent.com">
 
-	<script src="./../js/googleLogin.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
-	<script>
-	    function start() {
-	      gapi.load('auth2', function() {
-			  console.log("Check >>> <<<");
-	        auth2 = gapi.auth2.init({
-	          client_id: '664501923602-tnmkhgvhkr1nktvug2j2l50ieeiekc92.apps.googleusercontent.com',
-	          // Scopes to request in addition to 'profile' and 'email'
-	          //scope: 'https://www.google.com/m8/feeds/'
-	        });
-	      });
-	    }
-	  </script>
 	<!-- Modernizr JS -->
 	<script src="./../js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -373,7 +360,7 @@
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2 subtext">
 									<!-- <h3 class="animate-box">Signup and LogIn is coming soon...</h3> -->
-									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"></div>
+									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"  data-theme="dark"></div>
 									<a href="/" onclick="signOut();">SignOut</a>
 									<!-- <a href="/" onclick="signOut();">Sign out</a> -->
 								</div>
@@ -467,5 +454,10 @@
 		<!-- DB data for the graph -->
 		<script>var dataForChart = <%- chart_data %>;</script>
 		<script src="./../js/data_chart_demo.js" charset="utf-8"></script>
+
+		<!-- Google Login -->
+		<script src="./../js/googleLogin.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 	</body>
 </html>
