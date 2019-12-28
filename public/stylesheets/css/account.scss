@@ -1,0 +1,31 @@
+
+
+body{
+
+  .account_page_wrapper{
+    .user_info_wrapper{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .user_icon{
+        color: black;
+        border: black solid;
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        display: flex;
+        margin-bottom: 50px;
+        align-items: center;
+      }
+      .user_info{
+        display: flex;
+        flex-direction: column;
+        label{
+          color: black;
+        }
+      }
+    }
+  }
+}

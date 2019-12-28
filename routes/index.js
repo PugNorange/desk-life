@@ -164,7 +164,11 @@ router.post('/tokensignin', async (req, res, next) => {
 
 
 router.get('/instructions', function(req, res, next) {
-    res.render('instructions.ejs');
+    res.render('instructions');
+});
+
+router.get('/account', function(req, res, next) {
+    res.render('account');
 });
 
 // router.get('/data_chart_demo', function(req, res, next) {
