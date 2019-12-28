@@ -7,6 +7,7 @@
 <head>
 	<title>Healthware. &mdash; Daily health supporter</title>
 	<% include ./partials/head.ejs %>
+
 </head>
 
 	<body>
@@ -281,7 +282,6 @@
 									<!-- <h3 class="animate-box">Signup and LogIn is coming soon...</h3> -->
 									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"></div>
 									<a href="/account" id="account_btn">Go to your account page</a>
-									<!-- <a href="/" onclick="signOut();">Sign out</a> -->
 								</div>
 							</div>
 						</div>
@@ -373,5 +373,10 @@
 		<!-- DB data for the graph -->
 		<script>var dataForChart = <%- chart_data %>;</script>
 		<script src="./../js/data_chart_demo.js" charset="utf-8"></script>
+
+		<!-- Google Login -->
+		<script src="./../js/googleLogin.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 	</body>
 </html>

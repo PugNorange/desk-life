@@ -18,7 +18,7 @@ const pgClient = new pg.Client(config);
 pgClient.connect(err => {if (err) throw err;});
 // clientID for Google Signin
 const {OAuth2Client} = require('google-auth-library');
-var CLIENT_ID = '206538427441-cuboulq664drmm339ogq437pnsj0ap1i.apps.googleusercontent.com';
+var CLIENT_ID = '1059834391781-bjme5ivmlmv68ip8flmq14c90h9cpp8c.apps.googleusercontent.com';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
         .then((data, err) => {
             // console.log('Query successfully!', data.rows);
             var ch_data = JSON.stringify(data.rows);
+            console.log("CLient ID >> ", CLIENT_ID);
             res.render('index.ejs', {
                 chart_data: ch_data,
                 title: "home",

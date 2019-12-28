@@ -21,6 +21,10 @@ function onSignIn(googleUser) {
         const response = xhr.responseText;
         console.log('Server returned: ' + response);
 
+        // Change the nav
+        var accountNav = document.getElementById("user_account");
+        accountNav.innerHTML = "Hi, " + googleUser.getBasicProfile().getName();
+        accountNav.style.textDecoration = "underline";
 
     };
     xhr.send('idtoken=' + id_token);
@@ -35,6 +39,7 @@ function signOut() {
     });
 }
 function onSuccess(googleUser) {
+    console.log("CHECK >>>>")
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     // Replace Signin/Login with username
     var accountNav = document.getElementById("user_account");
@@ -63,3 +68,36 @@ function renderButton() {
         'onfailure': onFailure
     });
 }
+
+
+
+
+
+//////////////////////////////////////////////////////
+
+// // called by google client
+// function onSignIn(googleUser) {
+//   var id_token = googleUser.getAuthResponse().id_token;
+//   // never log these out on a real app
+//   console.log('id_token: ', id_token);
+//   var profile = googleUser.getBasicProfile();
+//   console.log('ID: ' + profile.getId());
+//   console.log('Name: ' + profile.getName());
+//   console.log('Image URL: ' + profile.getImageUrl());
+//   console.log('Email: ' + profile.getEmail());
+//   // verification
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', '/tokensignin');
+//   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//   xhr.onload = function() {
+//     console.log('Server returned: ' + xhr.responseText);
+//   };
+//   xhr.send('idtoken=' + id_token);
+// }
+// // on sign out
+// function signOut() {
+//   var auth2 = gapi.auth2.getAuthInstance();
+//   auth2.signOut().then(function() {
+//     console.log('User signed out.');
+//   });
+// }
