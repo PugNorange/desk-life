@@ -2,15 +2,6 @@
 // Google Signin / Login function and design
 //
 // first time sign In //
-
-function init(){
-    gapi.load('auth2', function(){
-        // Ready.
-    });
-}
-
-
-
 function onSignIn(googleUser) {
     console.log("Clicked google signin btn");
     // The ID token you need to pass to your backend:
@@ -30,6 +21,10 @@ function onSignIn(googleUser) {
         const response = xhr.responseText;
         console.log('Server returned: ' + response);
 
+        // Change the nav
+        var accountNav = document.getElementById("user_account");
+        accountNav.innerHTML = "Hi, " + googleUser.getBasicProfile().getName();
+        accountNav.style.textDecoration = "underline";
 
     };
     xhr.send('idtoken=' + id_token);
