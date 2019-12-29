@@ -8,9 +8,7 @@
 	<title>Healthware. &mdash; Daily health supporter</title>
 	<meta name="google-signin-client_id" content="<%= clientIdUrl %>">
 	<% include ./partials/head.ejs %>
-
 </head>
-
 	<body>
 		<!-- Header section -->
 		<% include ./partials/header.ejs %>
@@ -284,7 +282,20 @@
 								<div class="col-md-8 col-md-offset-2 subtext">
 									<!-- <h3 class="animate-box">Signup and LogIn is coming soon...</h3> -->
 									<div class="g-signin2" data-onsuccess="onSignIn" id="my-signin2" style="margin-left:33%;"></div>
-									<a href="/account" id="account_btn">Go to your account page</a>
+									<!-- <a href="/account" id="account_btn">Account page</a> -->
+									<!-- <form method="post" name="form1" action="/account">
+									    <input type="hidden" name="user_tokenid" value="user_tokenid">
+									    <a href="javascript:form1.submit()">リンク名</a>
+									</form> -->
+									<!-- <form action="/account"　method="POST">
+									    <button type="submit" name="email" value="" id="account_btn" style="display:none;"/>
+										Click to Account page
+										</button>
+									</form> -->
+
+									<!-- <button type="submit" action="/account/<%= clientIdUrl %>">Go to your account page</button> -->
+									<button onclick="openAccountPage();" id="account_btn">Go to your account page</button>
+
 								</div>
 							</div>
 						</div>
@@ -380,6 +391,5 @@
 		<!-- Google Login -->
 		<script src="./../js/googleLogin.js"></script>
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
-
 	</body>
 </html>

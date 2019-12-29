@@ -2,6 +2,7 @@
 // Google Signin / Login function and design
 //
 // first time sign In //
+var authorizedAccount = {username: "Unauthorized account", email: "unauthorizedemail", photo:"non", token:"non"};
 function onSignIn(googleUser) {
     console.log("Clicked google signin btn");
     // The ID token you need to pass to your backend:
@@ -21,11 +22,12 @@ function onSignIn(googleUser) {
         const response = xhr.responseText;
         console.log('Server returned: ' + response);
 
-        // Change the nav
         var accountNav = document.getElementById("user_account");
         accountNav.innerHTML = "Hi, " + googleUser.getBasicProfile().getName();
         accountNav.style.textDecoration = "underline";
-
+        // authorizedAccount.username  = "test name";
+        // authorizedAccount.email     = "test email";
+        // authorizedAccount.photo     = "test photo";
     };
     xhr.send('idtoken=' + id_token);
 
@@ -33,26 +35,27 @@ function onSignIn(googleUser) {
 
 // for sign out //
 function signOut() {
+    console.log("signout clicked");
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
 }
 function onSuccess(googleUser) {
-    console.log("CHECK >>>>")
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     // Replace Signin/Login with username
     var accountNav = document.getElementById("user_account");
     accountNav.innerHTML = "Hi, " + googleUser.getBasicProfile().getName();
     accountNav.style.textDecoration = "underline";
-    // accountNav.removeAttribute("data-nav-section");
-    // accountNav.setAttribute('href', '/instructions');
-    // accountNav.setAttribute('onclick', 'signOut();');
-    // accountNav.classList.remove("data-nav-section");
-    // accountNav.href = "/instructions";
+
+
     document.getElementById('my-signin2').style.display = 'none';
     document.getElementById('account_btn').style.display = 'flex';
-
+    document.getElementById('account_btn').value = String(googleUser.getBasicProfile().getEmail());
+    authorizedAccount.username  = googleUser.getBasicProfile().getName();
+    authorizedAccount.email     = googleUser.getBasicProfile().getEmail();
+    authorizedAccount.photo     = googleUser.getBasicProfile().getImageUrl();
+    authorizedAccount.token     = googleUser.getAuthResponse().id_token;
 }
 function onFailure(error) {
   console.log(error);
@@ -69,35 +72,19 @@ function renderButton() {
     });
 }
 
+// Open account page using google account data.
+function openAccountPage() {
+    console.log("Check if function is called " , authorizedAccount);
+    location.href = '/account?email=' + encodeURIComponent(authorizedAccount.email) + '?username='+encodeURIComponent(authorizedAccount.username) + '?icon=' + encodeURIComponent(authorizedAccount.photo);
+}
 
+function checkSignOut() {
+    alert("Signuot functionality is not fully integrated. Next fix deployment is coming soon..");
+    console.log("url >> ", location);
 
-
-
-//////////////////////////////////////////////////////
-
-// // called by google client
-// function onSignIn(googleUser) {
-//   var id_token = googleUser.getAuthResponse().id_token;
-//   // never log these out on a real app
-//   console.log('id_token: ', id_token);
-//   var profile = googleUser.getBasicProfile();
-//   console.log('ID: ' + profile.getId());
-//   console.log('Name: ' + profile.getName());
-//   console.log('Image URL: ' + profile.getImageUrl());
-//   console.log('Email: ' + profile.getEmail());
-//   // verification
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('POST', '/tokensignin');
-//   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//   xhr.onload = function() {
-//     console.log('Server returned: ' + xhr.responseText);
-//   };
-//   xhr.send('idtoken=' + id_token);
-// }
-// // on sign out
-// function signOut() {
-//   var auth2 = gapi.auth2.getAuthInstance();
-//   auth2.signOut().then(function() {
-//     console.log('User signed out.');
-//   });
-// }
+    if(('sessionStorage' in window) && (window.sessionStorage !== null)) {
+        console.log('storage ari');
+} else {
+    console.log("storage nashi");
+}
+}

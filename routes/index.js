@@ -22,6 +22,7 @@ var CLIENT_ID = '1059834391781-bjme5ivmlmv68ip8flmq14c90h9cpp8c.apps.googleuserc
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    // Get user id=2 for mock data.
     const query = `SELECT * FROM HEALTHINFO WHERE user_id=2 ORDER BY start_time;`;
     pgClient
         .query(query)
@@ -86,6 +87,7 @@ router.post('/tokensignin', async (req, res, next) => {
                                         res.render('index.ejs', {
                                             userData: userData,
                                             title: "login success",
+                                            userToken: idToken
                                         });
                                     })
                                     .catch((err) => {
@@ -122,6 +124,9 @@ router.post('/tokensignin', async (req, res, next) => {
                         pgClient.end();
                 });
             }
+            else {
+                console.log("Gmail is not verified. After it's verified, it will be allow to use as healthware account.");
+            }
 
         }
         verify().catch(console.error); // If token is invalid.
@@ -130,6 +135,57 @@ router.post('/tokensignin', async (req, res, next) => {
         next(e);
     }
 });
+
+
+// Redirect to instruction page.
+router.get('/instructions', function(req, res, next) {
+    res.render('instructions');
+});
+
+
+// Redirect to user account page.
+router.get('/account', function(req, res, next) {
+    console.log("CHECK account page");
+
+    // var check = req.param.email;
+    // console.log("email >> ", check);
+    res.render('account',{clientIdUrl: CLIENT_ID});
+    //
+    // // const authorizedToken = String(req.body.token);
+    // // console.log("TOKEN >>> ", authorizedToken);
+    // // // var userid = req.params.id;
+    // // // console.log('CHECK', userid);
+    // // // var userData = "checkuserdata";
+    // var dt = "chekc api";
+    // res.render('account');
+    // // res.render('account',{
+    // //     username: "userData from api",
+    // //     email: "email from api",
+    // //     photo: "photo from api",
+    // //     title: "Account success",
+    // // });
+    //
+    // const query = `SELECT * FROM HEALTHINFO WHERE user_id=2 ORDER BY start_time;`;
+    // pgClient
+    //     .query(query)
+    //     .then((data, err) => {
+    //         console.log("check if its on account query place", data.rows);
+    //         // console.log('Query successfully!', data.rows);
+    //         var ch_data = JSON.stringify(data.rows);
+    //         // console.log("CLient ID >> ", CLIENT_ID);
+    //         res.render('account.ejs', {
+    //             chart_data: ch_data,
+    //             title: "Account page"
+    //         });
+    //     })
+    //     .catch((err) => {
+    //         console.log("hey lol");
+    //         console.log(err)
+    //         pgClient.end();
+    // });
+});
+
+
 
 
 // router.post('/', function(req, res, next){
@@ -164,13 +220,6 @@ router.post('/tokensignin', async (req, res, next) => {
 // });
 
 
-router.get('/instructions', function(req, res, next) {
-    res.render('instructions');
-});
-
-router.get('/account', function(req, res, next) {
-    res.render('account');
-});
 
 // router.get('/data_chart_demo', function(req, res, next) {
 //     console.log("check point");
